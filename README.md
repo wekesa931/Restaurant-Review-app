@@ -2,14 +2,14 @@
 ## About the project
 This is the final test project of the UDACITY FRONT-END NANODEGREE PROGRAM. 
 The main objectives of the project include:
- **a. To convert a static and unresponsive site to being responsive for varius view ports-_mobile, tablet and desktop_.** 
- **b. To make the app more accessible by including ARIA standards on web accessability. This makes the app easy to navigate with the keyboard in case the user does not have a navigation mouse.**
- **c. To make the application accessible offline using service worker.**  
+##### a. To convert a static and unresponsive site to being responsive for varius view ports-_mobile, tablet and desktop_.
+##### b. To make the app more accessible by including ARIA standards on web accessability. This makes the app easy to navigate with the keyboard in case the user does not have a navigation mouse.
+##### c. To make the application accessible offline using service worker.
 
 ## Application Deign
 ### 1. Making the application responsive
 Initially, the app is static and does not respond well to mobile view. Responsiveness can be achieved by modification of the CSS code. In this case, I mainly used relative values for sizes e.g `width: 20%` rather than absolute values like `width: 20px`. Likewise for text, I used relative size syntax e.g; `font-size: 2vw` instead of `font-size: 2px`;
-I used **flex-box** to ensure the elements flw nicely around the page with changes in view port size. I also used **media queries** to detect the width of the view port and change the flow of the content on the page. The sample codes below illustrate this:
+I used **flex-box** to ensure the elements flow nicely around the page with changes in view port size. I also used **media queries** to detect the width of the view port and change the flow of the content on the page. The sample codes below illustrate this:
 ```
 @media screen and (min-width:767px){
   nav h1 a {
