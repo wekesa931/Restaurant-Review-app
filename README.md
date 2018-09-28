@@ -1,26 +1,89 @@
-# Mobile Web Specialist Certification Course
----
-#### _Three Stage Course Material Project - Restaurant Reviews_
+# Restaurant Review App
+## About the project
+This is the final test project of the UDACITY FRONT-END NANODEGREE PROGRAM. 
+The main objectives of the project include:
+ **a. To convert a static and unresponsive site to being responsive for varius view ports-_mobile, tablet and desktop_.** 
+ **b. To make the app more accessible by including ARIA standards on web accessability. This makes the app easy to navigate with the keyboard in case the user does not have a navigation mouse.**
+ **c. To make the application accessible offline using service worker.**  
 
-## Project Overview: Stage 1
+## Application Deign
+### 1. Making the application responsive
+Initially, the app is static and does not respond well to mobile view. Responsiveness can be achieved by modification of the CSS code. In this case, I mainly used relative values for sizes e.g `width: 20%` rather than absolute values like `width: 20px`. Likewise for text, I used relative size syntax e.g; `font-size: 2vw` instead of `font-size: 2px`;
+I used **flex-box** to ensure the elements flw nicely around the page with changes in view port size. I also used **media queries** to detect the width of the view port and change the flow of the content on the page. The sample codes below illustrate this:
+```
+@media screen and (min-width:767px){
+  nav h1 a {
+    font-size: 30pt !important;
+  }
+  nav {
+    height: 120px !important;
+  }
+  nav h1 {
+    line-height: 300% !important;
+    }
+    .inside #map-container {
+    width: 100% !important;
+  }
+.............
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+#maincontent {
+  background-color: #f3f3f3;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+```
+### 2. Making the site Accessabilty
+Web accessability is important for optimum cross-user experience. I used `tabIndex` to show priority of the elements when navigating the site and `aria-label="Home"` to mark the start point.
+```
+ <nav>
+      <h1><a aria-label="Home" tabindex="1" href="/">Restaurant Reviews</a></h1>
+    </nav>
+```
+One can easily navigate the site without a mouse or touch pad.
 
-### Specification
-
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality. 
-
-### What do I do from here?
-
-1. In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer. 
-
-In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
-
-2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
-3. Explore the provided code, and start making a plan to implement the required features in three areas: responsive design, accessibility and offline use.
-4. Write code to implement the updates to get this site on its way to being a mobile-ready website.
-
-## Leaflet.js and Mapbox:
-
-This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://www.mapbox.com/). You need to replace `<your MAPBOX API KEY HERE>` with a token from [Mapbox](https://www.mapbox.com/). Mapbox is free to use, and does not require any payment information. 
+### 3. Making it offline first.
+This I achieved with service worker. First I began by registering the service worker as shown
+```
+if('serviceWorker' in navigator){
+    navigator.serviceWorker
+    .register('/servj.js')
+    .then(function() {
+		console.log('Service Worker Registered');
+	})
+    .catch(function(){
+        console.log('Registration Failed');
+    });
+    
+}
+```
+I then created an array list that would hold all the files of the site and make them accessible offline:
+```
+let cachedItems = [
+    './',
+	'./index.html',
+	'./restaurant.html',
+	'./css/styles.css',
+	'./data/restaurants.json',............
+```
+Once the user is online, the files are stored in the cache and hence become available to the user. The fetch request gets the requested file by the user and makes it available when the user is offline.
+```
+self.addEventListener('fetch', function(e){
+    //To prevent the default fetch, we use `respondWith`
+    e.respondWidth(
+        //to check whether the event request url already exists within the cache we'll use `match`
+        caches.match(e.request).then(function(response){
+            //check if we get back a response from the match query
+            //if true, the request is returned
+            if(response){
+                console.log('Found ', e.request, ' in cache');
+                return response;
+            }
+            //If not, the request is not in the cache hence it is fetched as normal
+            else {
+                console.log('could not find ', e.request, ' in cache, FETCHING!');
+                return fetch(e.request)
+```
+## HOSTING
+The site has been hosted [HERE](https://wekesa931.github.io/Restaurant-Review-app/). with git pages
 
