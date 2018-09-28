@@ -85,5 +85,5 @@ self.addEventListener('fetch', function(e){
                 return fetch(e.request)
 ```
 ## HOSTING
-The site has been hosted [HERE](https://wekesa931.github.io/Restaurant-Review-app/). with git pages
+The site has been hosted [HERE](https://wekesa931.github.io/Restaurant-Review-app/) with git pages. However for better experience, clone the project to your local director
 
