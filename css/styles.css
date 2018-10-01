@@ -15,6 +15,9 @@ body {
 
 /* ====================== what will be displayed on an ipad with a width of 767px ====================== */
 @media screen and (min-width:767px){
+  #restaurants-list {
+    padding: 30px 2% 60px !important;
+}
   nav h1 a {
     font-size: 30pt !important;
   }
@@ -28,7 +31,7 @@ body {
     width: 100% !important;
   }
   ul, li {
-    font-size: 19pt !important;
+    font-size: 1vw !important;
   }
   #breadcrumb {
     padding: 10px 90px 16px !important;
@@ -52,6 +55,25 @@ body {
   }
 }
 
+@media screen and (min-width:800px){
+#restaurants-list {
+  padding: 30px 3% 60px !important;
+  }
+}
+
+@media screen and (min-width:1280px){
+#restaurants-list {
+  padding: 30px 120px 60px !important;
+  }
+}
+
+@media screen and (min-width:1100px){
+  #maincontent {
+    margin-left: 15%;
+    margin-right: 15%;
+    
+  }
+}
 
 
 
@@ -182,7 +204,7 @@ nav h1 a {
   background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0;
-  padding: 30px 15px 60px;
+  padding: 1% 8% 60px;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -193,7 +215,7 @@ nav h1 a {
   border: 2px solid #ccc;
   font-family: Arial,sans-serif;
   margin: 15px;
-  min-height: 380px;
+  
   padding: 0 30px 25px;
   text-align: left;
   width: 270px;
