@@ -39,7 +39,7 @@ let cachedItems = [
 //Next I listeed for the `fetch` event
 self.addEventListener('fetch', function(e){
     //To prevent the default fetch, we use `respondWith`
-    e.respondWidth(
+    e.respondWith(
         //to check whether the event request url already exists within the cache we'll use `match`
         caches.match(e.request).then(function(response){
             //check if we get back a response from the match query
